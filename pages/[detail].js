@@ -44,11 +44,7 @@ export default function Detail({data}){
 
 //Static Generation
 export async function getStaticPaths(){
-	const getAllData = await getSortedPostsData()
-	const perPage = getAllData.meta.pagination.perPage;
-	const totalPages = getAllData.meta.pagination.totalPages;
-	const countSlug = perPage * totalPages ;
-	const getAllSlug = await getMoreData(countSlug)
+	const getAllSlug = await getMoreData(999)
 	const path = getAllSlug.data.map((r) => {
 		return {
 			params:{
