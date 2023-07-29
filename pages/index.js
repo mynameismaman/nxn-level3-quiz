@@ -6,22 +6,22 @@ import useSWRInfinite from "swr/infinite";
 const fetcher = url => fetch(url).then(r => r.json());
 const PERPAGE = 4 ;
 
-export default function Home({datas,sort}){
-	const {data, size, setSize, isLoading} = useSWRInfinite((index)=>`https://hsi-sandbox.vercel.app/api/articles?perPage=${PERPAGE}&page=${index+1}&sort=${sort ? sort : 'new'}`,fetcher); // Client-side data fething dengan usr
-	const dataArtikel = data ? [].concat(...data) : [];
-	const isLoadingMore = isLoading || (size > 0 && data && typeof data?.[size - 1]?.data === 'undefined');
-	const isEmpty = data?.[size - 1]?.data.length === 0 || data?.[size - 1]?.data.length < 0;
+export default function Home({data,sort}){
+	const {data:dataMore, size, setSize, isLoading} = useSWRInfinite((index)=>`https://hsi-sandbox.vercel.app/api/articles?perPage=${PERPAGE}&page=${index+1}&sort=${sort ? sort : 'new'}`,fetcher); // Client-side data fething dengan usr
+	const articles = dataMore ? [].concat(...dataMore) : [];
+	const isLoadingMore = isLoading || (size > 0 && dataMore && typeof dataMore?.[size - 1]?.data === 'undefined');
+	const isEmpty = dataMore?.[size - 1]?.data.length === 0 || dataMore?.[size - 1]?.data.length < 0;
 
 	function ButtonMore({loading,empty}){
 		if (loading) {
 			return <div className="more">Loading...</div>;
 		} else if (!loading){
-			return <div className="more" onClick={handleKlik} hidden={empty}>Load More</div>;
+			return <div className="more" onClick={handleClick} hidden={empty}>Load More</div>;
 		}
 
 	}
 
-	function handleKlik(){
+	function handleClick(){
 		setSize(size+1);
 	}
 	
@@ -44,32 +44,32 @@ export default function Home({datas,sort}){
 		</div>
 		<div className="content">
 		{/** Ambil Data Tampilkan 4 Artikel  **/}
-		{datas.map((rs) => {
+		{data.map((item) => {
 			return (
-			<div key={rs.id} className="article">
-				<Image className="img-article" src={rs.thumbnail} width={570} height={306} alt={rs.title} priority={false}/>
+			<div key={item.id} className="article">
+				<Image className="img-article" src={item.thumbnail} width={570} height={306} alt={item.title} priority={false}/>
 				<div className="author">
 					<div>BY</div>
-					<div style={{color : "black"}}>{rs.author.firstName.toUpperCase() +' '+rs.author.middleName.toUpperCase()+' '+rs.author.lastName.toUpperCase()}</div>
+					<div style={{color : "black"}}>{item.author.firstName.toUpperCase() +' '+item.author.middleName.toUpperCase()+' '+item.author.lastName.toUpperCase()}</div>
 					<div>IN</div>
-					<div style={{color:"black"}}>{rs.category.name.toUpperCase()}</div>
+					<div style={{color:"black"}}>{item.category.name.toUpperCase()}</div>
 				</div>
-				<Link href={rs.slug} className="title">{rs.title}</Link>
+				<Link href={item.slug} className="title">{item.title}</Link>
 			</div>
 			);
 		})}
 		{/** Ambil data, Tampilkan 4 data berikutnya  **/}
-		{dataArtikel.map((x,index) => index !== 0 && x.data.map((rs) => {
+		{articles.map((article,index) => index !== 0 && article.data.map((article) => {
 			return (
-			<div key={rs.id} className="article">
-				<Image className="img-article" src={rs.thumbnail} width={570} height={306} alt={rs.title} priority={false}/>
+			<div key={article.id} className="article">
+				<Image className="img-article" src={article.thumbnail} width={570} height={306} alt={article.title} priority={false}/>
 				<div className="author">
 					<div>BY</div>
-					<div style={{color : "black"}}>{rs.author.firstName.toUpperCase() +' '+rs.author.middleName.toUpperCase()+' '+rs.author.lastName.toUpperCase()}</div>
+					<div style={{color : "black"}}>{article.author.firstName.toUpperCase() +' '+article.author.middleName.toUpperCase()+' '+article.author.lastName.toUpperCase()}</div>
 					<div>IN</div>
-					<div style={{color:"black"}}>{rs.category.name.toUpperCase()}</div>
+					<div style={{color:"black"}}>{article.category.name.toUpperCase()}</div>
 				</div>
-				<Link href={rs.slug} className="title">{rs.title}</Link>
+				<Link href={article.slug} className="title">{article.title}</Link>
 			</div>
 			); 
 		}))}
@@ -85,7 +85,7 @@ export async function getServerSideProps(context){
 	const dataQuery = !query.sort ? null : query.sort;
 	return {
 		props:{
-			datas:data.data,
+			data:data.data,
 			sort:dataQuery,
 		},
 	};

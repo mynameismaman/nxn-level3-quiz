@@ -66,22 +66,22 @@ function RelatedList({kategoriId}){
 		return <p className="more">Loading...</p>
 	}
 
-	const data = getByKategori && getByKategori.data.filter(x => x.category.id === kategoriId);
+	const relatedArticles = getByKategori && getByKategori.data.filter(data => data.category.id === kategoriId);
 
 	return <div className="card-section">
-		{data && data.map((y,index) =>  { if (index < listNumber ){ return (
-			<div key={y.id} className="card-related">
+		{relatedArticles && relatedArticles.map((article,index) =>  { if (index < listNumber ){ return (
+			<div key={article.id} className="card-related">
 				<div className="card-related-section-1">
 					<div className="num">{(index + 1) > 9 ? index + 1 : "0"+(index+1)}</div>
-					<Link href={y.slug} className="title-related-section">{y.title}</Link>
-					<div className="summary-related-section">{y.summary.substring(0,120)}{y.summary.length > 120 && " ..."} </div>
+					<Link href={article.slug} className="title-related-section">{article.title}</Link>
+					<div className="summary-related-section">{article.summary.substring(0,120)}{article.summary.length > 120 && " ..."} </div>
 				</div>
-				<Image src={y.thumbnail} width={330} height={230} alt={y.title} priority={false} className="image-related-section"/>
+				<Image src={article.thumbnail} width={330} height={230} alt={article.title} priority={false} className="image-related-section"/>
 
 			</div>
 		)}})}
 		{/**Tampilkan jika data masih lebih banyak dari jumlah listNumber**/}
-		<div onClick={() => setListNumber(listNumber+PERPAGE)} hidden={(data && data.length) < listNumber ? true : false} className="more" style={{marginTop:"20px"}}>Load More</div>
+		<div onClick={() => setListNumber(listNumber+PERPAGE)} hidden={(relatedArticles && relatedArticles.length) < listNumber ? true : false} className="more" style={{marginTop:"20px"}}>Load More</div>
 	</div>
 
 }

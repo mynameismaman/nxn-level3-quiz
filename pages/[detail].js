@@ -81,18 +81,18 @@ function ArtikelByKategori({categoryId,slug}){
 	
 	return <>
 		{/** Tampilkan **/}
-		{getByKategori.data.filter(x => x.category.id === categoryId && x.slug !== slug).map((d,index) => {
+		{getByKategori.data.filter(data => data.category.id === categoryId && data.slug !== slug).map((data,index) => {
 			if (index < 2){
-				return (<div key={d.id} className="article-related">
-						<Image src={d.thumbnail} width={400} height={250} alt={d.title} priority={true} style={{borderRadius:'5px'}}/>
+				return (<div key={data.id} className="article-related">
+						<Image src={data.thumbnail} width={400} height={250} alt={data.title} priority={true} style={{borderRadius:'5px'}}/>
 						<div className="author" style={{marginBottom:'10px'}}>
 							<div>BY</div>
-							<div style={{color : "black"}}>{d.author.firstName.toUpperCase() +' '+d.author.middleName.toUpperCase()+' '+d.author.lastName.toUpperCase()}</div>
+							<div style={{color : "black"}}>{data.author.firstName.toUpperCase() +' '+data.author.middleName.toUpperCase()+' '+data.author.lastName.toUpperCase()}</div>
 							<div>IN</div>
-							<div style={{color:"black"}}>{d.category.name.toUpperCase()}</div>
+							<div style={{color:"black"}}>{data.category.name.toUpperCase()}</div>
 						</div>
-						<Link href={d.slug} className="title-article-related">{d.title}</Link>
-						<p className="summary-article-related">{d.summary}</p>
+						<Link href={data.slug} className="title-article-related">{data.title}</Link>
+						<p className="summary-article-related">{data.summary}</p>
 					</div>
 				)
 			}
