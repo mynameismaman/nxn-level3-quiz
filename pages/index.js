@@ -1,4 +1,4 @@
-import { getSortedPostsData } from "../lib/ambilapi";
+import { getSortedPostsData } from "../lib/api";
 import Image from "next/image";
 import Link from "next/link";
 import useSWRInfinite from "swr/infinite";
