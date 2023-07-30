@@ -1,5 +1,14 @@
-:root {
-	--fontSaya : "Open Sans",sans-serif;
+@font-face {
+    font-family: OpenSans-Regular;
+    src: url('fonts/OpenSans-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: OpenSans-Bold;
+    src: url('fonts/OpenSans-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: OpenSans-SemiBold;
+    src: url('fonts/OpenSans-SemiBold.ttf') format('truetype');
 }
 
 .container{
@@ -15,7 +24,6 @@
 	display: flex;
 	flex-direction: row;
 	margin-bottom: 80px;
-	/*justify-content: space-between;*/
 	justify-content: flex-end;
 }
 
@@ -26,15 +34,12 @@
 	width: 370px;
 	line-height: 35px;
 	margin-right: 40px;
-	/*justify-content: center;
-	flex-grow:1.5;*/
 }
 
 .container .head .sort-popular {
-	font-family:var(--fontSaya);
+	font-family:OpenSans-SemiBold;
 	font-size: 16px;
 	font-style: normal;
-	font-weight: 600;
 	text-decoration: none;
 	padding-left: 18px;
 	padding-right: 20px;
@@ -44,10 +49,9 @@
 }
 
 .container .head .sort-new{
-	font-family:var(--fontSaya);
+	font-family:OpenSans-SemiBold;
 	font-size: 16px;
 	font-style: normal;
-	font-weight: 600;
 	text-decoration: none;
 	padding-left: 18px;
 	padding-right: 20px;
@@ -57,18 +61,16 @@
 }
 
 .container .head a.sort-new:hover {
-	font-family:var(--fontSaya);
+	font-family:OpenSans-SemiBold;
 	font-size: 16px;
 	font-style: normal;
-	font-weight: 600;
 	text-decoration: underline;
 }
 
 .container .head a.sort-popular:hover {
-	font-family:var(--fontSaya);
+	font-family:OpenSans-SemiBold;
 	font-size: 16px;
 	font-style: normal;
-	font-weight: 600;
 	text-decoration: underline;
 }
 
@@ -83,14 +85,12 @@
 	line-height: 35px;
 	color:white;
 	text-decoration: none;
-	font-family:'Open Sans';
+	font-family:OpenSans-SemiBold;
 	font-size: 16px;
 	font-style: normal;
-	font-weight: 600;
 }
 
 .container .head .sort-title{
-	/*flex-grow: 2;*/
 	text-align: start;
 	width:500px
 }
@@ -109,10 +109,9 @@
 }
 
 .container .content .article .title {
-	font-family:var(--fontSaya);
+	font-family:OpenSans-SemiBold;
 	font-size: 25px;
 	font-style: normal;
-	font-weight: 600;
 	text-decoration: none;
 	color: black;
 	line-height: 30.5px;
@@ -127,10 +126,9 @@
 	display: flex;
 	gap: 7px;
 	color: #9B9B9B;
-	font-family:var(--fontSaya);
+	font-family:OpenSans-Regular;
 	font-size: 12px;
 	font-style: normal;
-	font-weight: 400;
 	line-height: 25px; /* 362.5% */
 	letter-spacing: -0.1px;
 }
@@ -146,10 +144,9 @@
 	margin-top:-25px;
 	line-height: 35px;
 	color: #FF5480;
-	font-family:var(--fontSaya);
+	font-family:OpenSans-SemiBold;
 	font-size: 13px;
 	font-style: normal;
-	font-weight: 500;
 	letter-spacing: -0.5px;
 	cursor: pointer;
 }
@@ -171,21 +168,19 @@
 
 .container .content .article-detail .title-detail {
 	color: #4A4A4A;
-	font-family: var(--fontSaya);
+	font-family: OpenSans-Bold;
 	font-size: 28px;
 	font-style: normal;
-	font-weight: 700;
 	line-height: 35px; /* 161.111% */
 	letter-spacing: -0.225px;
 	margin-bottom: 20px;
 }
 
 .container .content .article-detail .isi-summary {
-	font-family: var(--fontSaya);
+	font-family:OpenSans-SemiBold;
 	color: #000;
 	font-size: 14px;
 	font-style: normal;
-	font-weight: 600;
 	line-height: 25px; /* 177.778% */
 	letter-spacing: -0.112px;
 	margin-top: 20px;
@@ -193,11 +188,10 @@
 }
 
 .container .content .article-detail .isi {
-	font-family: var(--fontSaya);
+	font-family: OpenSans-Regular;
 	font-size: 16px;
 	color: #4A4A4A;
 	font-style: normal;
-	font-weight: 400;
 	line-height: 30px; /* 200% */
 }
 
@@ -219,10 +213,9 @@
 
 .container .related-section .more .more-1{
 	color: #111210;
-	font-family: var(--fontSaya);
+	font-family:OpenSans-SemiBold;
 	font-size: 36px;
 	font-style: normal;
-	font-weight: 600;
 	line-height: 46px; /* 127.778% */
 	letter-spacing: -0.225px;
 }
@@ -230,10 +223,9 @@
 .container .related-section .more .more-2 {
 	margin-right: 10px;
 	color: #9B9B9B;
-	font-family: var(--fontSaya);
+	font-family: OpenSans-Regular;
 	font-size: 14px;
 	font-style: normal;
-	font-weight: 400;
 	line-height: 58px; /* 362.5% */
 	letter-spacing: -0.1px;
 	text-decoration: none;
@@ -252,20 +244,18 @@
 
 .container .related-section .more-article .article-related .title-article-related {
 	color: #111210;
-	font-family: var(--fontSaya);
+	font-family: OpenSans-SemiBold;
 	font-size: 22px;
 	font-style: normal;
-	font-weight: 600;
 	line-height: 30px; /* 164.286% */
 	letter-spacing: -0.175px;
 	text-decoration: none;
 }
 .container .related-section .more-article .article-related .summary-article-related {
 	color: #9B9B9B;
-	font-family: var(--fontSaya);
+	font-family: OpenSans-Regular;
 	font-size: 11px;
 	font-style: normal;
-	font-weight: 400;
 	line-height: 18px; /* 200% */
 	letter-spacing: -0.1px;
 	margin-right: 15px;
@@ -292,10 +282,9 @@
 
 .container-related .top-section .section-1 {
 	color: #000;
-	font-family: var(--fontSaya);
+	font-family: OpenSans-Bold;
 	font-size: 25px;
 	font-style: normal;
-	font-weight: 700;
 	line-height: 58px; /* 161.111% */
 	letter-spacing: -0.225px;
 }
@@ -321,10 +310,9 @@
 
 
 .container-related .top-section .section-2 .section-2-1 .related-title{
-	font-family: var(--fontSaya);
+	font-family: OpenSans-Bold;
 	color: #4A4A4A;
 	font-size: 28px;
-	font-weight: 700;
 	line-height: 45px;
 	letter-spacing: -0.22499999403953552px;
 	text-align: left;
@@ -338,10 +326,9 @@
 
 .container-related .top-section .section-2 .section-2-1 .related-summary {
 	color: #000;
-	font-family: var(--fontSaya);
+	font-family: OpenSans-SemiBold;
 	font-size: 16px;
 	font-style: normal;
-	font-weight: 600;
 	line-height: 25px; /* 177.778% */
 	letter-spacing: -0.112px;
 }
@@ -372,20 +359,18 @@
 }
 .container-related .card-section .card-related .card-related-section-1 .num {
 	color: #000;
-	font-family: var(--fontSaya);
+	font-family: OpenSans-Regular;
 	font-size: 18px;
 	font-style: normal;
-	font-weight: 400;
 	line-height: 40px; /* 241.667% */
 	letter-spacing: -0.15px;
 }
 
 .container-related .card-section .card-related .card-related-section-1 .title-related-section {
 	color: #111210;
-	font-family: var(--fontSaya);
+	font-family: OpenSans-SemiBold;
 	font-size: 24px;
 	font-style: normal;
-	font-weight: 600;
 	line-height: 35px; /* 164.286% */
 	letter-spacing: -0.175px;
 	text-decoration: none;
@@ -397,10 +382,9 @@
 
 .container-related .card-section .card-related .card-related-section-1 .summary-related-section {
 	color: #9B9B9B;
-	font-family: var(--fontSaya);
+	font-family: OpenSans-Regular;
 	font-size: 14px;
 	font-style: normal;
-	font-weight: 400;
 	line-height: 25px; /* 200% */
 	letter-spacing: -0.1px;
 	margin-top:20px;
@@ -423,10 +407,9 @@
 	margin-top:-25px;
 	line-height: 35px;
 	color: #FF5480;
-	font-family:var(--fontSaya);
+	font-family:OpenSans-SemiBold;
 	font-size: 13px;
 	font-style: normal;
-	font-weight: 500;
 	letter-spacing: -0.5px;
 	cursor: pointer;
 }

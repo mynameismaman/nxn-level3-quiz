@@ -1,4 +1,5 @@
 import { getSortedPostsData } from "../lib/api";
+import { usePathname } from 'next/navigation'
 import Image from "next/image";
 import Link from "next/link";
 import useSWRInfinite from "swr/infinite";
@@ -11,6 +12,7 @@ export default function Home({data,sort}){
 	const articles = dataMore ? [].concat(...dataMore) : [];
 	const isLoadingMore = isLoading || (size > 0 && dataMore && typeof dataMore?.[size - 1]?.data === 'undefined');
 	const isEmpty = dataMore?.[size - 1]?.data.length === 0 || dataMore?.[size - 1]?.data.length < 0;
+	const pathname = usePathname();
 
 	function ButtonMore({loading,empty}){
 		if (loading) {
@@ -30,7 +32,7 @@ export default function Home({data,sort}){
 				
 			<div className="sort">
 				<Link href="?sort=popular" onClick={()=> {setSize(0)}} className={sort === "popular" ? "sort-select" : "sort-popular"}>Popular</Link>
-				<Link href="?sort=new" onClick={()=> {setSize(0)}} className={sort === "new" ? "sort-select" : "sort-new"}>News</Link>
+				<Link href="?sort=new" onClick={()=> {setSize(0)}} className={sort === "new"  || (pathname == "/" && sort != "popular") ? "sort-select" : "sort-new"}>New</Link>
 			</div>
 			<div className="sort-title"><Link href={"/"}><img src="/images/logo.svg" /></Link></div>
 			 
