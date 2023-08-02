@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import useSWR from 'swr';
+import useSWRInfinite from 'swr/infinite';
 import { useState } from "react";
 
 const fetcher = url => fetch(url).then(res => res.json());
@@ -50,16 +50,15 @@ export async function getServerSideProps(context){
 }
 
 function RelatedList({kategoriId}){
+	const {data:getByKategori, error, isLoading} = useSWRInfinite(() => 'https://hsi-sandbox.vercel.app/api/articles?perPage=999',fetcher)
 	const [listNumber, setListNumber] = useState(PERPAGE);
-	const {data:getPagination} = useSWR(`https://hsi-sandbox.vercel.app/api/articles?perPage=${PERPAGE}`,fetcher);
-	const {data:getByKategori,error,isLoading} = useSWR(() => `https://hsi-sandbox.vercel.app/api/articles?perPage=${getPagination.meta.pagination.totalPages * PERPAGE}`,fetcher); //Ambil demua data pada api
 	if (error){
-		return <p className="more">Error Load</p>
+		return <div className="more">Error Load</div>
 	} else if (isLoading) {
-		return <p className="more">Loading...</p>
+		return <div className="more">Loading...</div>
 	}
 
-	const relatedArticles = getByKategori && getByKategori.data.filter(data => data.category.id === kategoriId);
+	const relatedArticles = getByKategori && getByKategori[0].data.filter(data => data.category.id === kategoriId);
 
 	return <div className="card-section">
 		{relatedArticles && relatedArticles.map((article,index) =>  { if (index < listNumber ){ return (
