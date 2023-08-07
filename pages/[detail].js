@@ -23,15 +23,7 @@ export default function Detail({data}){
 				<p className="isi" style={{marginTop:'20px'}}>{data.data.content}</p>
 			</div>
 		</div>
-		<div className="related-section">
-			<div className="more">
-				<div className="more-1">You might also like...</div>
-				<Link className="more-2" href={data.data.slug + "/relates"}>More</Link>
-			</div>
-			<div className="more-article">
-				<ArtikelByKategori categoryId={data.data.category.id} slug={data.data.slug}/>
-			</div>
-		</div>
+		<ArtikelByKategori categoryId={data.data.category.id} slug={data.data.slug}/>
 	</div>;
 }
 
@@ -67,10 +59,18 @@ function ArtikelByKategori({categoryId,slug}){
 	if(!getByKategori){
 		return <p>Loading</p>
 	}
+
+	const dataByKategori = getByKategori.data.filter(data => data.category.id === categoryId && data.slug !== slug); 
 	
 	return <>
+		<div className="related-section" style={{display:dataByKategori.length === 0 ? "none" : "flex"}}>
+			<div className="more">
+				<div className="more-1">You might also like...</div>
+				<Link className="more-2" href={slug + "/relates"}>More</Link>
+			</div>
+			<div className="more-article">
 		{/** Tampilkan **/}
-		{getByKategori.data.filter(data => data.category.id === categoryId && data.slug !== slug).map((data,index) => {
+		{dataByKategori.map((data,index) => {
 			if (index < 2){
 				return (<div key={data.id} className="article-related">
 						<Image src={data.thumbnail} width={400} height={250} alt={data.title} priority={true} style={{borderRadius:'5px'}}/>
@@ -86,5 +86,7 @@ function ArtikelByKategori({categoryId,slug}){
 				)
 			}
 		})}
+			</div>
+		</div>
 	</>
 }

@@ -20,7 +20,7 @@ export default function Detail({data}){
 				</div>
 			</div>
 		</div>
-		<RelatedList kategoriId={data.data.category.id}/>
+		<RelatedList kategoriId={data.data.category.id} articleId={data.data.id}/>
 		<style jsx global>{`
 			body {
 				background: #F9F9FB;
@@ -49,7 +49,7 @@ export async function getServerSideProps(context){
 	}
 }
 
-function RelatedList({kategoriId}){
+function RelatedList({kategoriId,articleId}){
 	const {data:getByKategori, error, isLoading} = useSWRInfinite(() => 'https://hsi-sandbox.vercel.app/api/articles?perPage=999',fetcher)
 	const [listNumber, setListNumber] = useState(PERPAGE);
 	if (error){
@@ -58,7 +58,7 @@ function RelatedList({kategoriId}){
 		return <div className="more">Loading...</div>
 	}
 
-	const relatedArticles = getByKategori && getByKategori[0].data.filter(data => data.category.id === kategoriId);
+	const relatedArticles = getByKategori && getByKategori[0].data.filter(data => data.category.id === kategoriId && articleId != data.id);
 
 	return <div className="card-section">
 		{relatedArticles && relatedArticles.map((article,index) =>  { if (index < listNumber ){ return (
